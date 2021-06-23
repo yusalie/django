@@ -11,9 +11,10 @@
 </head>
 
 <body>
-    <h1>hello</h1>
-    <h2>world</h2>
-    <h3>this is a template</h3>
+    <h1>this is a template</h1>
+    {% if show_meetups%} {% for meetup_item in meetups %}
+    <p>{{meetup_item.title}}</p>
+    {% endfor %} {% endif %}
 </body>
 
 </html>
