@@ -11,10 +11,34 @@
 </head>
 
 <body>
-    <h1>this is a template</h1>
-    {% if show_meetups%} {% for meetup_item in meetups %}
-    <p>{{meetup_item.title}}</p>
-    {% endfor %} {% endif %}
+    <header>
+        <nav>
+            <a href="/meetups">Meetups</a>
+            <h1>we got great meetups coming up</h1>
+            <p>find the one that best suits your needs</p>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <ol>
+                {% for meetup_items in meetups%}
+                <li class="meetup-item">
+                    <article>
+                        <div class="meetup-summary">
+                            <div class="meetup-image">
+                                <img src="" alt="">
+                            </div>
+                            <div class="meetup-details">
+                                <h3>{{meetup_items.title}}</h3>
+                                <address>{{meetup_items.location}}</address>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </main>
 </body>
 
 </html>
