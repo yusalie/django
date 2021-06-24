@@ -1,20 +1,9 @@
 from django.shortcuts import render
+from .models import Meetup
 
 # Create your views here.
 def index(request):
-    meetups = [
-        {
-            'title': 'A first meetup', 
-            'location':'New York', 
-            'slug':'a-first-meetup'
-        },
-        {
-            'title': 'A second meetup', 
-            'location':'Japan', 
-            'slug':'a-second-meetup'
-        },
-        
-    ]
+    meetups = Meetup.objects
     return render(request, 'meetups/index.html',{
         'show_meetups': True,
         'meetups': meetups
