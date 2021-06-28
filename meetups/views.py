@@ -3,19 +3,23 @@ from .models import Meetup
 
 # Create your views here.
 def index(request):
-    meetups = Meetup.objects
-    return render(request, 'meetups/index.html',{
-        'show_meetups': True,
+    # try:
+    meetups = Meetup.objects.all()
+    return render(request, 'meetups/index.html',  {
         'meetups': meetups
     })
+    # except Exception as e:
+    #     print(e)
 
 def meetup_details(request, meetup_slug):
-    print(meetup_slug)
-    selected_meetups ={
-            'title':'A first meetup', 
-            'description':'this is the first meetup'
-        }
-    return render(request, 'meetups/meetup-details.html', {
-        'meetup_title':selected_meetups['title'],
-        'meetup_description': selected_meetups['description']
-    })
+    try:
+        selected_meetups = Meetup.objects.get(slug=meetup_slug)
+        return render(request, 'meetups/meetup-details.html', {
+            'meetup_found':True,
+            'meetup_title':selected_meetups.title,
+            'meetup_description': selected_meetups.description
+        })
+    except Exception as e:
+        return render(request, 'meetups/meetup-details.html', {
+            'meetup_found':False
+        })
